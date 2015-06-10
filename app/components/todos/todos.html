@@ -1,0 +1,9 @@
+<h2>My todos</h2>
+
+<!-- Todos list -->
+<p class="input-group" ng-repeat="todo in todos.todos track by $index">
+  <input type="text" ng-model="todo.title" class="form-control">
+  <span class="input-group-btn">
+    <a class="btn btn-primary" ng-link="todo({id: $index})" aria-label="Remove">X</a>
+  </span>
+</p>
