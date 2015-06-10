@@ -27,26 +27,20 @@
           }
         },
         'query':  {
-          isArray:true,
-          transformResponse : function (data, headersGetter) {
-            return angular.fromJson(data);
-          }
+           isArray:true,
+           transformResponse : function (data, headersGetter) {
+             return angular.fromJson(data);
+           }
         },
         'remove': {
-          transformRequest: function (data, headersGetter) {
-            return data;
-          },
           transformResponse : function (data, headersGetter) {
             return angular.fromJson(data);
           }
-        },
-        'delete': {
-          transformRequest: function (data, headersGetter) {
-            return data;
-          },
-          transformResponse : function (data, headersGetter) {
-            return angular.fromJson(data);
-          }
+        }
+      },
+      {
+        'update': {
+          method:'PUT'
         }
       }
     );
