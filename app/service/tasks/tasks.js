@@ -8,7 +8,7 @@
    */
   function TasksService($resource){
 
-    return $resource('/api/tasks/:id', 
+    return $resource('/api/tas/:id', 
       /**
        default method
        {

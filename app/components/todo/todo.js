@@ -30,13 +30,15 @@
   	console.log('TodoController activate Method');
 
     var _self = this;
-    
-    return this.TasksService.get({id: _self.id}).$promise.then(
+
+    return this.TasksService.get({id: _self.id}).$promise.then (
       function(todo){
         _self.todo = todo;
-      }).catch(function(e){
-        console.log(e);
-      });
+      }
+    ).catch (function (e) {
+        _self.message = e.statusText;
+      }
+    );
   };
 
   TodoController.prototype.back = function() {
@@ -51,16 +53,14 @@
       'title': this.todo.title,
       'desc': this.todo.desc
     });
-    this.TasksService.save(data).$promise.then(
-      function(){
-        return ;
-      }).catch(function(e){
-        console.log(e);
-      });
-
+    this.TasksService.save(data).$promise.catch (
+      function (e) {
+        _self.message = e.statusText;
+      }
+    );
   }; 
 
-  TodoController.prototype.update = function() {
+  TodoController.prototype.update = function () {
     console.log('update');
 
     var _self = this;
@@ -69,14 +69,11 @@
       'title': this.todo.title,
       'desc': this.todo.desc
     });
-    console.log(data);
-    this.TasksService.update(data).$promise.then(
-      function(){
-        return ;
-      }).catch(function(e){
+    this.TasksService.update(data).$promise.catch (
+      function (e) {
         console.log(e);
-      });
-
+      }
+    );
   }; 
 
   TodoController.prototype.delete = function() {
@@ -84,12 +81,9 @@
 
     var _self = this;
 
-    this.TasksService.remove({id: this.id}).$promise.then(
-      function(){
-        return ;
-      }).catch(function(e){
-        console.log(e);
-      });
+    this.TasksService.remove({id: this.id}).$promise.catch(function (e) {
+      console.log(e);
+    });
 
     this.$location.path('/todos');
   }; 

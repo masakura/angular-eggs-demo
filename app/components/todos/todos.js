@@ -29,10 +29,10 @@
 
     var _self = this;
 
-    return this.TasksService.query().$promise.then(
+    return this.TasksService.query().$promise.then (
       function(todos){
         _self.todos = todos;
-      }).catch(function(e){});
+      }).catch( function(e){ });
 
   };
 
