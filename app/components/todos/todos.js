@@ -1,7 +1,7 @@
 /**
- * 
  *
- * @deprecated 
+ *
+ * @deprecated
  * @module components/todos
  */
 (function () {
@@ -19,7 +19,7 @@
   }
 
   /**
-  * My method description.  Like other pieces of your comment blocks, 
+  * My method description.  Like other pieces of your comment blocks,
   * this can span multiple lines.
   *
   * @method activate
@@ -29,7 +29,7 @@
 
     var _self = this;
 
-    return this.TasksService.query().$promise.then(
+    return this.TasksService.getAll().then(
       function(todos){
         _self.todos = todos;
       }).catch(function(e){});

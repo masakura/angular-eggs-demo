@@ -1,8 +1,8 @@
 (function () {
   'use strict';
-  
+
   /**
-   * 
+   *
    * @class TasksService
    * @constructor
    */
@@ -56,7 +56,24 @@
         }
       }
     );
-    return tasksService;
+
+    return {
+      get: function (id) {
+        return tasksService.get({id: id}).$promise;
+      },
+      save: function (data) {
+        return tasksService.save(data).$promise;
+      },
+      getAll: function () {
+        return tasksService.query().$promise;
+      },
+      remove: function (id) {
+        return tasksService.remove({id: id}).$promise;
+      },
+      delete: function (id) {
+        return tasksService.delete({id: id}).$promise;
+      }
+    };
   }
 
   angular.module('demo.service.tasks',[
@@ -66,5 +83,3 @@
 
   TasksService.$inject = ['$resource'];
 })();
-
-
