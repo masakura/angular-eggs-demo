@@ -30,8 +30,8 @@
   	console.log('TodoController activate Method');
 
     var _self = this;
-
-    return this.TasksService.get({id: this.id}).$promise.then(
+    
+    return this.TasksService.get({id: _self.id}).$promise.then(
       function(todo){
         _self.todo = todo;
       }).catch(function(e){
@@ -69,6 +69,7 @@
       'title': this.todo.title,
       'desc': this.todo.desc
     });
+    console.log(data);
     this.TasksService.update(data).$promise.then(
       function(){
         return ;

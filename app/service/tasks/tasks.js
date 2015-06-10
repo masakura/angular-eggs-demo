@@ -8,43 +8,40 @@
    */
   function TasksService($resource){
 
-    var tasksService = $resource('/api/tasks/:id',
+    return $resource('/api/tasks/:id', 
+      /**
+       default method
+       {
+        'get':    {method:'GET'},
+        'save':   {method:'POST'},
+        'query':  {method:'GET', isArray:true},
+        'remove': {method:'DELETE'},
+        'delete': {method:'DELETE'}
+        };
+        It describes only when these methods will be overridden.
+        It can run without writing.
+       */
       {
         'get': {
-          transformResponse : function (data, headersGetter) {
+          transformResponse: function (data) {
             return angular.fromJson(data);
-          }
-        },
-        'save':   {
-          transformRequest: function (data, headersGetter) {
-            return data;
-          },
-          transformResponse : function (data, headersGetter) {
-            return angular.toJson({
-              buytime: new Date().getTime(),
-              books:angular.fromJson(data)
-            });
           }
         },
         'query':  {
-           isArray:true,
-           transformResponse : function (data, headersGetter) {
+           transformResponse: function (data) {
              return angular.fromJson(data);
            }
-        },
-        'remove': {
-          transformResponse : function (data, headersGetter) {
-            return angular.fromJson(data);
-          }
         }
       },
+      /**
+       optional method
+       */
       {
         'update': {
           method:'PUT'
         }
       }
     );
-    return tasksService;
   }
 
   angular.module('demo.service.tasks',[

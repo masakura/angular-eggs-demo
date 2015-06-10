@@ -2,43 +2,39 @@
 
 exports = module.exports = function(app) {
 
-  var json = require('../data/tasks.json');
+  var tasks = require('../data/tasks.json');
 
   app.get('/api/tasks', function(req, res) {
-    res.json(200, json);
+    res.status(200).json(tasks);
   });
 
   app.get('/api/tasks/:id', function(req, res) {
     var id = req.params.id;
-    res.json(200, json[id]);
+    res.status(200).json(tasks[id]);
   });
 
   app.post('/api/tasks', function(req, res) {
     console.log('post');
-    var t = req.body.title;
-    var d = req.body.desc;
-    json.push({
-      'title': t,
-      'desc': d
+    tasks.push({
+      'title': req.body.title,
+      'desc':  req.body.desc
     });
     res.send(200);
   });
 
   app.put('/api/tasks', function(req, res) {
     console.log('put');
-    var id = req.body.id; 
-    var t = req.body.title;
-    var d = req.body.desc;
-    json[id] = {
-      'title': t,
-      'desc': d
+    var id = req.body.id;
+    tasks[id] = {
+      'title': req.body.title,
+      'desc':  req.body.desc
     };
     res.send(200);
   });
 
   app.delete('/api/tasks/:id', function(req, res) {
     var id = req.params.id;
-    json.splice(id, 1);
+    tasks.splice(id, 1);
     res.send(200);
   });
 };
