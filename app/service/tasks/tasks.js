@@ -11,9 +11,6 @@
     var tasksService = $resource('/api/tasks/:id',
       {
         'get': {
-          transformRequest: function (data, headersGetter) {
-            return data;
-          },
           transformResponse : function (data, headersGetter) {
             return angular.fromJson(data);
           }
@@ -31,9 +28,6 @@
         },
         'query':  {
           isArray:true,
-          transformRequest: function (data, headersGetter) {
-            return data;
-          },
           transformResponse : function (data, headersGetter) {
             return angular.fromJson(data);
           }

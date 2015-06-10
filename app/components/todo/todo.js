@@ -28,17 +28,27 @@
   TodoController.prototype.activate = function() {
   	console.log('TodoController activate Method');
 
-
     var _self = this;
-    console.log(this.id);
 
     return this.TasksService.get({id: this.id}).$promise.then(
       function(todo){
-        _self.todo = todo;
+        _self.todo = todo.todo;
       }).catch(function(e){
         console.log(e);
       });
   };
+
+  TodoController.prototype.back = function() {
+    console.log('back');
+  }; 
+
+  TodoController.prototype.update = function() {
+    console.log('update');
+  }; 
+
+  TodoController.prototype.delete = function() {
+    console.log('delete');
+  }; 
 
   angular.module('demo.todo', [])
     .controller('TodoController', TodoController);
