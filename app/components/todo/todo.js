@@ -88,7 +88,21 @@
 
     var _self = this;
 
-    this.TasksService.remove({id: this.id}).$promise.catch (
+    this.TasksService.delete({id: this.id}).$promise.catch (
+      function (e) {
+        console.log(e);
+      }
+    );
+
+    this.$location.path('/todos');
+  };
+
+  TodoController.prototype.remove = function() {
+    console.log('delete');
+
+    var _self = this;
+
+    this.TasksService.remove().$promise.catch (
       function (e) {
         console.log(e);
       }

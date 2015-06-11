@@ -36,6 +36,19 @@
 
   };
 
+  TodosController.prototype.remove = function() {
+    console.log('TodosController remove Method');
+
+    var _self = this;
+
+    return this.TasksService.remove().$promise.then (
+      function(){
+        _self.todos = '';
+      }).catch( function(e){ });
+
+  };
+
+
   angular.module('demo.todos', [
     'demo.service.tasks'
   ])
