@@ -13,7 +13,7 @@
   }
 
   AppConfig.$inject = ['$locationProvider'];
-
+  
   function AppController () {}
 
   angular.module('demo', [
