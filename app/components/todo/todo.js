@@ -31,6 +31,10 @@
 
     var _self = this;
 
+    if (!_self.id) {
+      return ;
+    }
+
     return this.TasksService.get({id: _self.id}).$promise.then (
       function(todo){
         _self.todo = todo;
@@ -48,10 +52,12 @@
 
   TodoController.prototype.add = function() {
     console.log('add');
+    
     var _self = this;
-    var data = JSON.stringify({
+
+    var data = angular.fromJson({
       'title': this.todo.title,
-      'desc': this.todo.desc
+      'desc':  this.todo.desc
     });
     this.TasksService.save(data).$promise.catch (
       function (e) {
@@ -64,7 +70,8 @@
     console.log('update');
 
     var _self = this;
-    var data = JSON.stringify({
+
+    var data = angular.fromJson({
       'id': this.id,
       'title': this.todo.title,
       'desc': this.todo.desc
@@ -81,9 +88,11 @@
 
     var _self = this;
 
-    this.TasksService.remove({id: this.id}).$promise.catch(function (e) {
-      console.log(e);
-    });
+    this.TasksService.remove({id: this.id}).$promise.catch (
+      function (e) {
+        console.log(e);
+      }
+    );
 
     this.$location.path('/todos');
   }; 

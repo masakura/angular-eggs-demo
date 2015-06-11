@@ -1,6 +1,10 @@
-<h2>My todos</h2>
+<h2>Todos 
+  <div class="btn-group pull-right" role="group" aria-label="...">
+    <a type="button" class="btn btn-default"      ng-link="todo({id: undefined})">追加</a>
+    <button type="button" class="btn btn-default" ng-click="todo.remove()">削除</button>
+  </div>
+</h2>
 
-<!-- Todos list -->
 <p class="input-group" ng-repeat="todo in todos.todos track by $index">
   <input type="text" ng-model="todo.title" class="form-control">
   <span class="input-group-btn">
