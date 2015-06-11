@@ -18,6 +18,7 @@
     this.TasksService = TasksService;
     this.id = $routeParams.id;
     this.$location = $location;
+    this.message = undefined;
   }
 
   /**
@@ -59,10 +60,15 @@
       'title': this.todo.title,
       'desc':  this.todo.desc
     });
-    this.TasksService.save(data).$promise.catch (
-      function (e) {
-        _self.message = e.statusText;
-      }
+    this.TasksService.save(data).$promise.then (
+        function () {
+          console.log('aaaa');
+          _self.$location.path('/todos');
+        }
+      ).catch (
+        function (e) {
+          _self.message = e.statusText;
+        }
     );
   }; 
 
@@ -78,7 +84,7 @@
     });
     this.TasksService.update(data).$promise.catch (
       function (e) {
-        console.log(e);
+        _self.message = e.status + ': ' + e.statusText;
       }
     );
   }; 
@@ -107,7 +113,6 @@
         console.log(e);
       }
     );
-
     this.$location.path('/todos');
   }; 
 

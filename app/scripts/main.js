@@ -22,7 +22,9 @@
     'demo.about',
     'demo.contact',
     'demo.todos',
-    'demo.todo'
+    'demo.todo',
+    'demo.header',
+    'demo.directive.message'
     ])
     .config(AppConfig)
     .controller('AppController', AppController);

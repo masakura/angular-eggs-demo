@@ -13,9 +13,10 @@
    * @class AboutController
    * @constructor
    */
-  function TodosController(TasksService) {
+  function TodosController(TasksService, TodoscountService) {
   	console.log('TodosController Constructor');
     this.TasksService = TasksService;
+    this.TodoscountService = TodoscountService;
   }
 
   /**
@@ -32,6 +33,7 @@
     return this.TasksService.query().$promise.then (
       function(todos){
         _self.todos = todos;
+        _self.TodoscountService.counter = todos.length;
       }).catch( function(e){ });
 
   };
@@ -44,15 +46,18 @@
     return this.TasksService.remove().$promise.then (
       function(){
         _self.todos = '';
-      }).catch( function(e){ });
+      }).catch( function(e){
+        console.log('error', e.status, e.statusText);
+      });
 
   };
 
 
   angular.module('demo.todos', [
-    'demo.service.tasks'
+    'demo.service.tasks',
+    'demo.service.todoscount'
   ])
     .controller('TodosController', TodosController);
 
-  TodosController.$inject = ['TasksService'];
+  TodosController.$inject = ['TasksService', 'TodoscountService'];
 })();
