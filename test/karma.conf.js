@@ -39,7 +39,6 @@ module.exports = function(config) {
       // injector:js
       'app/components/about/about.js',
       'app/components/contact/contact.js',
-      'app/components/header/header.js',
       'app/components/home/home.js',
       'app/components/todo/todo.js',
       'app/components/todos/todos.js',

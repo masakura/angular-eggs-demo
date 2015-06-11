@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top" ng-controller="HeaderController as header">
+<div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed"
@@ -13,9 +13,9 @@
     <div class="collapse navbar-collapse" id="app-nav">
       <ul class="nav navbar-nav">
         <li><a ng-link="home">Home</a></li>
-        <li><a ng-link="about">About <span class="badge">{{header.about}}</span></a></li>
+        <li><a ng-link="about">About <span class="badge">{{demo.about}}</span></a></li>
         <li><a ng-link="contact">Contact</a></li>
-        <li><a ng-link="todos">Todos <span class="badge">{{header.todos}}</span></a></li>
+        <li><a ng-link="todos">Todos <span class="badge">{{demo.todos}}</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://github.com/albatrosary/generator-angular-eggs/blob/master/readme.md">github</a></li>
