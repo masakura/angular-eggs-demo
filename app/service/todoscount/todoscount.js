@@ -10,7 +10,8 @@
     
     // Public API here
     return {
-      counter: 0
+      tasks: 0,
+      about: 0
     };
   }
 

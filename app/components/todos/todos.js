@@ -33,7 +33,7 @@
     return this.TasksService.query().$promise.then (
       function(todos){
         _self.todos = todos;
-        _self.TodoscountService.counter = todos.length;
+        _self.TodoscountService.tasks = todos.length;
       }).catch( function(e){ });
 
   };

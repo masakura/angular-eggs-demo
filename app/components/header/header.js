@@ -13,22 +13,31 @@
    * @class HeaderController
    * @constructor
    */
-  function HeaderController(TodoscountService, TasksService, $rootScope) {
+  function HeaderController(TodoscountService, TasksService, GruntfilesService, $rootScope) {
   	console.log('HeaderController Constructor');
-    this.about = 43;
     var _self = this;
 
     $rootScope.$watch(function(){
-      return TodoscountService.counter;
-    }, function(){
-      _self.todos = TodoscountService.counter;
+      return TodoscountService.tasks;
+    }, function() {
+      _self.todos = TodoscountService.tasks;
     });
 
     TasksService.query().$promise.then (
       function(todos){
-        TodoscountService.counter = todos.length;
+        TodoscountService.tasks = todos.length;
       }).catch( function(e){ });
 
+    $rootScope.$watch(function(){
+      return TodoscountService.about;
+    }, function(){
+      _self.about = TodoscountService.about;
+    });
+
+    GruntfilesService.query().$promise.then (
+      function(about){
+        TodoscountService.about = about.length;
+      }).catch( function(e){ });
   }
 
   /**
@@ -50,9 +59,10 @@
 
   angular.module('demo.header', [
       'demo.service.todoscount',
-      'demo.service.tasks'
+      'demo.service.tasks',
+      'demo.service.gruntfiles'
     ])
     .controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['TodoscountService', 'TasksService', '$rootScope'];
+  HeaderController.$inject = ['TodoscountService', 'TasksService', 'GruntfilesService', '$rootScope'];
 })();
